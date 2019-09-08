@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 309
   Top = 279
-  Caption = 'Touhou Toolkit GUI v1.0'
+  Caption = 'Touhou Toolkit GUI v1.2'
   ClientHeight = 576
   ClientWidth = 715
   Color = clBtnFace

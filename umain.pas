@@ -208,7 +208,7 @@ end;
 
 procedure ApplyLocalization(sLang: string);
 begin
-  with TIniFile.Create(sAppDir + '\' + LANG_FILE_NAME) do
+  with TMemIniFile.Create(sAppDir + '\' + LANG_FILE_NAME, TEncoding.UTF8) do
     try
       with Main do
       begin
@@ -312,7 +312,7 @@ procedure SaveGameSettings(sSection: string);
 var
   i: integer;
 begin
-  with TIniFile.Create(sAppDir + '\' + INI_FILE_NAME) do
+  with TMemIniFile.Create(sAppDir + '\' + INI_FILE_NAME, TEncoding.UTF8) do
     try
       WriteString('OPTIONS', 'THTK_MAIN_PATH', sTHTKPath);
       WriteString('OPTIONS', 'TOUHOU_GAMES_PATH', sGamesPath);
@@ -324,24 +324,42 @@ begin
       WriteBool('OPTIONS', 'MI_AUTO_BACKUP', Main.miSettingsBackup.Checked);
       for i := 0 to slLocal.Count - 1 do
         if Main.miSettingsLocal[i].Checked then
-          WriteString('OPTIONS', 'LANGUAGE', Main.miSettingsLocal[i].Caption);
-      WriteString(sSection, 'THDAT_FOLDER', Main.eTHDATFolder.Text);
-      WriteString(sSection, 'THDAT_ARCHIVE', Main.eTHDATArchive.Text);
+          WriteString('OPTIONS', 'LANGUAGE',  WideString(Main.miSettingsLocal[i].Caption));
+      WriteString(sSection, 'THDAT_FOLDER', WideString(Main.eTHDATFolder.Text));
+      WriteString(sSection, 'THDAT_ARCHIVE', WideString(Main.eTHDATArchive.Text));
+      WriteString(sSection, 'THANM_ARCHIVE', WideString(Main.eTHANMArchive.Text));
+      WriteString(sSection, 'THANM_FILE', WideString(Main.eTHANMFile.Text));
+      WriteString(sSection, 'THANM_ENTRY', WideString(Main.eTHANMEntry.Text));
+      WriteString(sSection, 'THECL_ARCHIVE', WideString(Main.eTHECLArchive.Text));
+      WriteString(sSection, 'THMSG_ARCHIVE', WideString(Main.eTHMSGArchive.Text));
     finally
+      UpdateFile;
       Free;
     end;
 end;
 
 procedure LoadGameSettings(sSection: string);
 var
-  sBuff: string;
+  sBuff: string; wsBuff: WideString;
 begin
-  with TIniFile.Create(sAppDir + '\' + INI_FILE_NAME) do
+  with TMemIniFile.Create(sAppDir + '\' + INI_FILE_NAME, TEncoding.UTF8) do
     try
-      Main.eTHDATFolder.Text := ReadString(sSection, 'THDAT_FOLDER', '');
+      wsBuff := ReadString(sSection, 'THDAT_FOLDER', '');
+      Main.eTHDATFolder.Text := wsBuff;
       if Main.eTHDATFolder.Text = '' then
         Main.eTHDATFolder.Text := sDefDir;
-      Main.eTHDATArchive.Text := ReadString(sSection, 'THDAT_ARCHIVE', '');
+      wsBuff := ReadString(sSection, 'THDAT_ARCHIVE', '');
+      Main.eTHDATArchive.Text := wsBuff;
+      wsBuff := ReadString(sSection, 'THANM_ARCHIVE', '');
+      Main.eTHANMArchive.Text := wsBuff;
+      wsBuff := ReadString(sSection, 'THANM_FILE', '');
+      Main.eTHANMFile.Text := wsBuff;
+      wsBuff := ReadString(sSection, 'THANM_ENTRY', '');
+      Main.eTHANMFile.Text := wsBuff;
+      wsBuff := ReadString(sSection, 'THECL_ARCHIVE', '');
+      Main.eTHECLArchive.Text := wsBuff;
+      wsBuff := ReadString(sSection, 'THMSG_ARCHIVE', '');
+      Main.eTHMSGArchive.Text := wsBuff;
     finally
       Free;
     end;
@@ -396,6 +414,10 @@ begin
     sDir := Main.eTHDATFolder.Text
   else
     sDir := ExtractFileDrive(sAppDir);
+
+  if not DirectoryExists(sDir) then
+    sDir := ExtractFileDir(sDir);
+
   with TFileOpenDialog.Create(nil) do
     try
       Title := T_OPEN_DIALOG_FILE;
@@ -452,10 +474,10 @@ begin
       mtConfirmation, [mbYes, mbNo], 0) = mrNo then
       exit;
   if cEndingDialogue.Checked then
-    sEnding := 'e'
+    sEnding := '-e'
   else
     sEnding := '';
-  CommExec('thmsg', 'c', GetGameNumber + sEnding, '', eTHDATFolder.Text,
+  CommExec('thmsg', '-c', GetGameNumber + sEnding, '', eTHDATFolder.Text,
     AddQuotes(eTHMSGFile.Text), AddQuotes(eTHMSGArchive.Text));
 end;
 
@@ -515,10 +537,10 @@ begin
       mtConfirmation, [mbYes, mbNo], 0) = mrNo then
       exit;
   if cEndingDialogue.Checked then
-    sEnding := 'e'
+    sEnding := '-e'
   else
     sEnding := '';
-  CommExec('thmsg', 'd', GetGameNumber + sEnding, eTHMSGArchive.Text,
+  CommExec('thmsg', '-d', GetGameNumber + sEnding, eTHMSGArchive.Text,
     ExtractFileDir(eTHMSGArchive.Text), AddQuotes(eTHMSGFile.Text));
 end;
 
@@ -538,10 +560,10 @@ begin
     exit;
   end;
   if cIgnoreErrors.Checked then
-    sIgnore := 'f'
+    sIgnore := '-f'
   else
     sIgnore := '';
-  CommExec('thanm', 'r', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text,
+  CommExec('thanm', '-r', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text,
     eTHANMEntry.Text, AddQuotes(eTHANMFile.Text));
 end;
 
@@ -588,7 +610,7 @@ begin
     try
       LoadFromFile(eTHANMSpec.Text);
       Delimiter := #13;
-      CommExec('thanm', 'c', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text,
+      CommExec('thanm', '-c', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text,
         AddQuotes(eTHANMSpec.Text));
     finally
       Free;
@@ -615,10 +637,10 @@ begin
       exit;
     end;
   if cIgnoreErrors.Checked then
-    sIgnore := 'f'
+    sIgnore := '-f'
   else
     sIgnore := '';
-  CommExec('thanm', 'l', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text, '>',
+  CommExec('thanm', '-l', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text, '>',
     AddQuotes(eTHANMSpec.Text));
 end;
 
@@ -640,11 +662,11 @@ begin
       exit;
     end;
   if cIgnoreErrors.Checked then
-    sIgnore := 'f'
+    sIgnore := '-f'
   else
     sIgnore := '';
   bTHANMList.Click;
-  CommExec('thanm', 'x', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text);
+  CommExec('thanm', '-x', sIgnore, eTHANMArchive.Text, eTHANMFolder.Text);
 end;
 
 procedure TMain.bTHECLArchiveBrowseClick(Sender: TObject);
@@ -666,7 +688,7 @@ begin
     if MessageDlg(Format(ERR_FILE_ALREADY_EXISTS, [eTHECLArchive.Text]),
       mtConfirmation, [mbYes, mbNo], 0) = mrNo then
       exit;
-  CommExec('thecl', 'c', GetGameNumber, '', eTHDATFolder.Text,
+  CommExec('thecl', '-c', GetGameNumber, '', eTHDATFolder.Text,
     AddQuotes(eTHECLFile.Text), AddQuotes(eTHECLArchive.Text));
 
 end;
@@ -695,7 +717,7 @@ begin
     if MessageDlg(Format(ERR_FILE_ALREADY_EXISTS, [eTHECLFile.Text]),
       mtConfirmation, [mbYes, mbNo], 0) = mrNo then
       exit;
-  CommExec('thecl', 'd', GetGameNumber, eTHECLArchive.Text,
+  CommExec('thecl', '-d', GetGameNumber, eTHECLArchive.Text,
     ExtractFileDir(eTHECLArchive.Text), AddQuotes(eTHECLFile.Text));
 end;
 
@@ -761,7 +783,7 @@ begin
         end;
       end;
       Delimiter := ' ';
-      CommExec('thdat', 'c', GetGameNumber, eTHDATArchive.Text,
+      CommExec('thdat', '-c', GetGameNumber, eTHDATArchive.Text,
         eTHDATFolder.Text, DelimitedText);
     finally
       Free;
@@ -781,7 +803,7 @@ begin
   if not CheckGame(eTHDATArchive.Text) then
     if MessageDlg(ERR_DAT_FILE_WRONG, mtWarning, [mbYes, mbNo], 0) = mrNo then
       exit;
-  CommExec('thdat', 'l', GetGameNumber, eTHDATArchive.Text,
+  CommExec('thdat', '-l', GetGameNumber, eTHDATArchive.Text,
     ExtractFileDrive(sAppDir), '>', AddQuotes(sListFilename));
 end;
 
@@ -805,7 +827,7 @@ begin
         mtError, [mbOK], 0);
       exit;
     end;
-  CommExec('thdat', 'x', GetGameNumber, eTHDATArchive.Text, eTHDATFolder.Text,
+  CommExec('thdat', '-x', GetGameNumber, eTHDATArchive.Text, eTHDATFolder.Text,
     '>', AddQuotes(sListFilename));
 end;
 
@@ -888,7 +910,7 @@ begin
   sAppDir := GetCurrentDir;
   slGames := TStringList.Create;
   slLocal := TStringList.Create;
-  with TIniFile.Create(sAppDir + '\' + LANG_FILE_NAME) do
+  with TMemIniFile.Create(sAppDir + '\' + LANG_FILE_NAME, TEncoding.UTF8) do
     try
       ReadSections(slLocal);
       for i := 0 to slLocal.Count - 1 do
@@ -905,7 +927,7 @@ begin
     finally
       Free;
     end;
-  with TIniFile.Create(sAppDir + '\' + INI_FILE_NAME) do
+  with TMemIniFile.Create(sAppDir + '\' + INI_FILE_NAME, TEncoding.UTF8) do
     try
       ReadSectionValues('GAMES', slGames);
       sTHTKPath := ReadString('OPTIONS', 'THTK_MAIN_PATH', '');
