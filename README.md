@@ -107,7 +107,9 @@ ecl文件中包含描述敌人移动，攻击等的脚本。它们的结构和�
 
 ## 兼容性相关
 
-原来的项目已经多年没有更新，而thtk在第10版（Touhou Toolkit release 10）以后改变了语法，导致thtkgui理论兼容的最高thtk版本为release 9。我正在着手解决问题，并有初步效果，待稳定后会发布release（支持最新的thtk11）。
+原来的项目已经多年没有更新，而thtk在第10版（Touhou Toolkit release 10）以后改变了语法，导致thtkgui理论兼容的最高thtk版本为release 9。
+
+本项目针对新语法进行了更新，因此只支持thtk release 10及以上版本。
 
 ## 原版README
 
