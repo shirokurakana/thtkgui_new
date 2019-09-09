@@ -1,7 +1,7 @@
 object Main: TMain
   Left = 309
   Top = 279
-  Caption = 'Touhou Toolkit GUI v1.2'
+  Caption = 'Touhou Toolkit GUI v1.3'
   ClientHeight = 576
   ClientWidth = 715
   Color = clBtnFace
@@ -33,9 +33,9 @@ object Main: TMain
       709
       216)
     object eTHANMFolder: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 16
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 30
@@ -46,9 +46,9 @@ object Main: TMain
       OnChange = eTHANMFolderChange
     end
     object eTHANMArchive: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 43
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 36
@@ -59,7 +59,7 @@ object Main: TMain
       OnChange = eTHANMArchiveChange
     end
     object bTHANMFolderBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 16
       Width = 25
       Height = 21
@@ -69,7 +69,7 @@ object Main: TMain
       OnClick = bTHANMFolderBrowseClick
     end
     object bTHANMArchiveBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 43
       Width = 25
       Height = 21
@@ -79,36 +79,36 @@ object Main: TMain
       OnClick = bTHANMArchiveBrowseClick
     end
     object bTHANMCreate: TButton
-      Left = 48
+      Left = 64
       Top = 96
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Create archive'
       TabOrder = 6
       OnClick = bTHANMCreateClick
     end
     object bTHANMList: TButton
-      Left = 207
+      Left = 276
       Top = 96
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Get description'
       TabOrder = 7
       OnClick = bTHANMListClick
     end
     object bTHANMExtract: TButton
-      Left = 366
+      Left = 488
       Top = 96
-      Width = 138
+      Width = 180
       Height = 25
       Caption = 'Extract archive'
       TabOrder = 8
       OnClick = bTHANMExtractClick
     end
     object eTHANMEntry: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 127
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 26
@@ -122,7 +122,7 @@ object Main: TMain
       OnKeyUp = eTHANMEntryKeyUp
     end
     object bTHANMEntryBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 127
       Width = 25
       Height = 21
@@ -132,9 +132,9 @@ object Main: TMain
       OnClick = bTHANMEntryBrowseClick
     end
     object eTHANMFile: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 154
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 16
@@ -144,7 +144,7 @@ object Main: TMain
       TabOrder = 11
     end
     object bTHANMFileBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 154
       Width = 25
       Height = 21
@@ -154,9 +154,9 @@ object Main: TMain
       OnClick = bTHANMFileBrowseClick
     end
     object bTHANMReplace: TButton
-      Left = 48
+      Left = 64
       Top = 181
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Replace entry'
       TabOrder = 13
@@ -164,17 +164,17 @@ object Main: TMain
     end
     object cIgnoreErrors: TCheckBox
       Left = 554
-      Top = 185
+      Top = 181
       Width = 139
-      Height = 17
+      Height = 25
       Anchors = [akTop, akRight]
       Caption = 'Ignore errors'
       TabOrder = 14
     end
     object eTHANMSpec: TLabeledEdit
-      Left = 88
+      Left = 120
       Top = 69
-      Width = 577
+      Width = 545
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 53
@@ -184,7 +184,7 @@ object Main: TMain
       TabOrder = 4
     end
     object bTHANMSpecBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 69
       Width = 25
       Height = 21
@@ -207,9 +207,9 @@ object Main: TMain
       709
       105)
     object eTHDATFolder: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 16
-      Width = 617
+      Width = 604
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 30
@@ -220,9 +220,9 @@ object Main: TMain
       OnChange = eTHDATFolderChange
     end
     object eTHDATArchive: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 43
-      Width = 617
+      Width = 604
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 36
@@ -232,7 +232,7 @@ object Main: TMain
       TabOrder = 2
     end
     object bTHDATFolderBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 16
       Width = 25
       Height = 21
@@ -242,7 +242,7 @@ object Main: TMain
       OnClick = bTHDATFolderBrowseClick
     end
     object bTHDATArchiveBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 43
       Width = 25
       Height = 22
@@ -252,27 +252,27 @@ object Main: TMain
       OnClick = bTHDATArchiveBrowseClick
     end
     object bTHDATCreate: TButton
-      Left = 48
+      Left = 64
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Create archive'
       TabOrder = 4
       OnClick = bTHDATCreateClick
     end
     object bTHDATList: TButton
-      Left = 207
+      Left = 276
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Get file list'
       TabOrder = 5
       OnClick = bTHDATListClick
     end
     object bTHDATExtract: TButton
-      Left = 366
+      Left = 488
       Top = 70
-      Width = 138
+      Width = 180
       Height = 25
       Caption = 'Extract archive'
       TabOrder = 6
@@ -292,9 +292,9 @@ object Main: TMain
       709
       103)
     object eTHMSGFile: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 16
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 16
@@ -304,9 +304,9 @@ object Main: TMain
       TabOrder = 0
     end
     object eTHMSGArchive: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 43
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 36
@@ -317,7 +317,7 @@ object Main: TMain
       OnChange = eTHMSGArchiveChange
     end
     object bTHMSGFileBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 16
       Width = 25
       Height = 21
@@ -327,7 +327,7 @@ object Main: TMain
       OnClick = bTHMSGFileBrowseClick
     end
     object bTHMSGArchiveBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 43
       Width = 25
       Height = 21
@@ -337,18 +337,18 @@ object Main: TMain
       OnClick = bTHMSGArchiveBrowseClick
     end
     object bTHMSGCreate: TButton
-      Left = 48
+      Left = 64
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Create archive'
       TabOrder = 4
       OnClick = bTHMSGCreateClick
     end
     object bTHMSGDump: TButton
-      Left = 207
+      Left = 276
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Extract archive'
       TabOrder = 5
@@ -356,9 +356,9 @@ object Main: TMain
     end
     object cEndingDialogue: TCheckBox
       Left = 554
-      Top = 74
+      Top = 70
       Width = 142
-      Height = 17
+      Height = 25
       Anchors = [akTop, akRight]
       Caption = 'Ending dialogue'
       TabOrder = 6
@@ -377,9 +377,9 @@ object Main: TMain
       709
       105)
     object eTHECLFile: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 16
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 16
@@ -389,9 +389,9 @@ object Main: TMain
       TabOrder = 0
     end
     object eTHECLArchive: TLabeledEdit
-      Left = 48
+      Left = 64
       Top = 43
-      Width = 617
+      Width = 601
       Height = 21
       Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 36
@@ -402,7 +402,7 @@ object Main: TMain
       OnChange = eTHECLArchiveChange
     end
     object bTHECLFileBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 16
       Width = 25
       Height = 21
@@ -412,7 +412,7 @@ object Main: TMain
       OnClick = bTHECLFileBrowseClick
     end
     object bTHECLArchiveBrowse: TButton
-      Left = 671
+      Left = 675
       Top = 43
       Width = 25
       Height = 21
@@ -422,18 +422,18 @@ object Main: TMain
       OnClick = bTHECLArchiveBrowseClick
     end
     object bTHECLCreate: TButton
-      Left = 48
+      Left = 64
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Create archive'
       TabOrder = 4
       OnClick = bTHECLCreateClick
     end
     object bTHECLDump: TButton
-      Left = 207
+      Left = 276
       Top = 70
-      Width = 153
+      Width = 180
       Height = 25
       Caption = 'Extract archive'
       TabOrder = 5
