@@ -1,7 +1,5 @@
 # 介绍
 
-[日本語版](https://github.com/shirokurakana/thtkgui_new/tree/japanize)
-
 Touhou Toolkit（简称thtk）是一个解包和修改东方游戏资源文件的工具。它允许提取和修改游戏脚本，材质和GUI元素; 游戏内文字; 指定敌人移动，攻击等的级别脚本; demo rep和游戏内声音。它不能解包并保存BGM（红妖永的midi音乐除外，因为mid文件存储在`thxx.dat`中而非`thbgm.dat`中）(xx为一个数字，下同）。
 
 Touhou Toolkit由四个控制台应用程序组成（现在有五个程序，新增了thstd.exe用于处理std文件，但thtkgui尚未支持。std文件中包含3D背景相关的文件）
@@ -27,7 +25,7 @@ Touhou Toolkit是一个控制台应用程序，thtkgui为它提供了一个图�
 
 - `紅魔郷IN.DAT` - 声音和界面元素
 
-- `紅魔郷MD.DAT` - midi版BGM
+- `紅魔郷MD.DAT` - midi-music
 
 - `紅魔郷ST.DAT` - 攻击脚本，关卡和符卡的背景，敌人和Boss的脚本和图片，对话文本
 
@@ -43,7 +41,7 @@ Touhou Toolkit是一个控制台应用程序，thtkgui为它提供了一个图�
 
 dat文件中包含的所有文件都将放在目标目录中。其中如demo rep，图片和声音等可以直接访问。`*.anm`，`*.msg`和`*.ecl`文件应该由thtk进一步处理。
 
-#### 支持的游戏（基于Touhou Toolkit release 11）
+#### 支持的游戏（基于Touhou Toolkit release 9）
 
 编号 | 游戏名 | 是否支持 |备注
 :-: | :-: | :-: | :-:
@@ -58,7 +56,6 @@ dat文件中包含的所有文件都将放在目标目录中。其中如demo rep
 | 9 |东方花映塚 ～ Phantasmagoria of Flower View. | 是 |  |
 | 95 |东方文花帖 ～ Shoot the Bullet. | 是 |  |
 | 10 |东方风神录 ～ Mountain of Faith. | 是 |  |
-| 103 |黄昏酒場～Uwabami Breakers. | 是 |  |
 | 105 |东方绯想天 ～ Scarlet Weather Rhapsody. | 是 |  |
 | 11 |东方地灵殿 ～ Subterranean Animism. | 是 |  |
 | 12 |东方星莲船 ～ Undefined Fantastic Object. | 是 |  |
@@ -70,7 +67,7 @@ dat文件中包含的所有文件都将放在目标目录中。其中如demo rep
 | 143 |弹幕天邪鬼 ～ Impossible Spell Card. | 是 |  |
 | 15 |东方绀珠传 ～ Legacy of Lunatic Kingdom. | 是 |  |
 | 16 |东方天空璋 ～ Hidden Star in Four Seasons. | 是 |  |
-| 16(17) |东方鬼形兽　～ Wily Beast and Weakest Creature.| 是 | 使用天空璋模式可以解包 |
+| 17 |东方鬼形兽　～ Wily Beast and Weakest Creature.| 是 |  |
 
 对汉化版游戏的支持尚不明确，若有需要请自行测试。
 
@@ -106,7 +103,7 @@ ecl文件中包含描述敌人移动，攻击等的脚本。它们的结构和�
 
 - 有一个已知的错误会影响ecl文件的创建。它会导致应用程序抛出语法错误并不可逆转地破坏目标ecl文件。该错误是由于应用程序不正确地处理在符卡名称中使用的转义双引号`\"`引起的。
 要修复此错误，您需要将源文件中的所有`\"`实例替换为任何其他符号或组合符号
-（除`"`外）
+（“除`"`外”）
 
 ## 兼容性相关
 
@@ -118,7 +115,7 @@ ecl文件中包含描述敌人移动，攻击等的脚本。它们的结构和�
 
 我将原版中的帮助文件以Markdown重写，并用README.md替换原来的README.txt，故在此备份一遍原版README.txt中的内容。
 
->Графический интерфейс для программы Touhou Toolkit от xarnonymous.<br>
+>﻿Графический интерфейс для программы Touhou Toolkit от xarnonymous.<br>
 >Позволяет пропустить рутинные операции с командной строкой и перейти прямо к моддингу.<br>
 >Для подробной информации обратитесь к файлам помощи в папке Help.<br>
 Разработка: доброанон с dobrochan.com/to<br>
@@ -132,6 +129,14 @@ ecl文件中包含描述敌人移动，攻击等的脚本。它们的结构和�
 >Developer: dobroanon from dobrochan.com/to<br>
 >Mail: fake.dobrochan@gmail.com<br>
 >Author of idea and main tester: sybgamer<br>
->Repository on GitHub: github.com/fakedobro/thtkgui
+>Repository on GitHub: github.com/fakedobro/thtkgui<br>
+><br>
+>由xarnonymous制作的Touhou Toolkit的图形界面。<br>
+>允许跳过例行命令行操作并继续直接进行修改。<br>
+>有关更多信息，请参阅帮助文件夹中的帮助文件。<br>
+>开发人员：dobrochan.com/to的dobroanon<br>
+>邮箱：fake.dobrochan@gmail.com<br>
+>想法和主要测试者的作者：sybgamer<br>
+>GitHub仓库：github.com/fakedobro/thtkgui<br>
 
 
